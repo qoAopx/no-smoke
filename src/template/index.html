@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138559138-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', '<%= process.env.VUE_APP_GOOGLE_ANALYTICS %>');
+  </script>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="canonical" href="https://no-smoke.web.app/">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="./images/icons/icon-180x180.png">
+  <link rel="icon" type="image/png" href="./images/icons/icon-96x96.png">
+  <!-- OGP -->
+
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"></head>
+  <meta property="og:title" content="No Smoke ! - 禁煙なお店が探せます。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://no-smoke.web.app/" />
+  <meta property="og:image" content="https://no-smoke.web.app/ogp.png" />
+  <meta property="og:site_name" content="No Smoke ! - 禁煙なお店が探せます。" />
+  <meta property="og:description" content="禁煙なお店を簡単に探せるサービスです。 お気に入りのお店を保存することもできます。" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="No Smoke ! - 禁煙なお店が探せます。" />
+  <meta name="twitter:description" content="禁煙なお店を簡単に探せるサービスです。 お気に入りのお店を保存することもできます。" />
+  <meta name="twitter:image" content="https://no-smoke.web.app/ogp.png" />
+
+  <!-- site description -->
+  <meta name="description" content="No Smoke ! - 禁煙なお店を簡単に探せるサービスです。 お気に入りのお店を保存することもできます。" />
+  <meta name="keywords" content="禁煙,Smoke,No Smoke,Vue.js,YOLP,Firebase" />
+
+  <title>No Smoke ! - 禁煙なお店が探せます。</title>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but no-smoke doesn't work properly without JavaScript enabled. Please enable it to
+      continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+  <script type="text/javascript" charset="utf-8"
+    src="https://map.yahooapis.jp/js/V1/jsapi?appid=<%= process.env.VUE_APP_YAHOO_APPID %>"></script>
+  <!-- Place your kit's code here -->
+  <script src="https://kit.fontawesome.com/6437583b70.js"></script>
+</body>
+
+</html>

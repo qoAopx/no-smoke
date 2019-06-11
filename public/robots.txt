@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+sitemap: https://no-smoke.web.app/sitemap.txt
