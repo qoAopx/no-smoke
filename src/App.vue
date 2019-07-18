@@ -22,7 +22,7 @@
       &copy; 2019 <b-link
         href="https://twitter.com/qoAop"
         target="_blank"
-        rel="noopener,nofollow">
+        rel="noopener nofollow">
         <i class="fab fa-twitter-square" /> @qoAop
       </b-link>
     </div>
@@ -31,7 +31,7 @@
       <span style="margin:15px 15px 15px 15px"><a
         href="https://developer.yahoo.co.jp/about"
         target="_blank"
-        rel="noopener,nofollow">Web Services by Yahoo! JAPAN</a></span>
+        rel="noopener nofollow">Web Services by Yahoo! JAPAN</a></span>
       <!-- End Yahoo! JAPAN Web Services Attribution Snippet -->
     </div>
   </div>

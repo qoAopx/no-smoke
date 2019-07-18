@@ -10,11 +10,11 @@
         <a
           href="https://www.google.com/settings/ads"
           target="_blank"
-          rel="noopener,nofollow">広告設定</a>でパーソナライズ広告を無効にできるます（または、
+          rel="noopener nofollow">広告設定</a>でパーソナライズ広告を無効にできるます（または、
         <a
           href="http://www.aboutads.info/choices/"
           target="_blank"
-          rel="noopener,nofollow">www.aboutads.info</a> にアクセスすれば、パーソナライズ広告に使われる第三者配信事業者の Cookie を無効にできます）。
+          rel="noopener nofollow">www.aboutads.info</a> にアクセスすれば、パーソナライズ広告に使われる第三者配信事業者の Cookie を無効にできます）。
       </li>
     </ul>
 
@@ -28,7 +28,7 @@
         <a
           href="http://www.aboutads.info/choices/"
           target="_blank"
-          rel="noopener,nofollow">www.aboutads.info</a> にアクセスすれば、第三者配信事業者がパーソナライズド広告の掲載で使用する Cookie を無効にできます。
+          rel="noopener nofollow">www.aboutads.info</a> にアクセスすれば、第三者配信事業者がパーソナライズド広告の掲載で使用する Cookie を無効にできます。
       </li>
     </ul>
   </details>

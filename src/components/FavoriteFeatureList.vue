@@ -49,7 +49,7 @@
                   class="ml-2 d-inline-block"
                   :href="`https://loco.yahoo.co.jp/place/g-${f.Gid}/`"
                   target="_blank"
-                  rel="noopener,nofollow">
+                  rel="noopener nofollow">
                   <i class="fas fa-external-link-alt" /> 詳細
                 </b-link>
               </b-col>
