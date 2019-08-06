@@ -1,5 +1,5 @@
-import '@babel/polyfill';
-import 'mutationobserver-shim';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 import Vue from 'vue';
 import './plugins/bootstrap-vue';
 import App from './App.vue';
