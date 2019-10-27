@@ -5,7 +5,8 @@ import './plugins/bootstrap-vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-
+// fontawesome
+import '@fortawesome/fontawesome-free/css/all.css';
 Vue.config.productionTip = false;
 
 new Vue({
