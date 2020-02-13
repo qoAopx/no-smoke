@@ -7,11 +7,12 @@ jobs:
         environment:
           LANG: ja_JP.UTF-8
           TZ: Asia/Tokyo
-          TOKEN: ${FIREBASE_TOKEN}
     steps:
       - checkout # ソースコードを作業ディレクトリにチェックアウトする特別なステップ:要git
       - run:
           name: environment
+          environment:
+            TOKEN: ${FIREBASE_TOKEN}
           command: |
             echo ${LANG} ${TZ} ${FIREBASE_TOKEN} ${TOKEN}
             node -e "
