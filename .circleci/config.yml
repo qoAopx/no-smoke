@@ -77,7 +77,7 @@ workflows:
   build_and_test: # workflow名
     jobs:
       - build:
-          context: gcp_001
+          context: no-smoke
       - deploy:
           requires: # buildが成功したら実行する
           - build
