@@ -46,40 +46,30 @@ jobs:
           name: install & lint
           command: |
             node -e "console.log(new Date().toLocaleString())"
-            cd app
             yarn install
-            ls -la
       - run:
           name: firebase
           command: |
-            cd app
-            firebase --version
-      - run:
-          name: test
-          command: |
-            cd app
-            yarn lint
+            yarn firebase:version
       - persist_to_workspace:
           root: . # workspaceのrootパス（絶対パスかworking_directoryからの相対パス）
           paths:
             - . # 共有するパス（絶対パスかrootからの相対パス）
-#  serve:
-#    working_directory: ~/app
-#    docker:
-#      - image: circleci/node:10
-#        environment:
-#          LANG: ja_JP.UTF-8
-#          TZ: Asia/Tokyo
-#    steps:
-#      - checkout # ソースコードを作業ディレクトリにチェックアウトする特別なステップ:要git
-#      - attach_workspace: # workspaceをアタッチする
-#          at: .
-#      - run:
-#          name: serve
-#          command: |
-#            cd app
-#            yarn install
-#            yarn firebase
+  lint:
+    working_directory: ~/app
+    docker:
+      - image: circleci/node:10
+        environment:
+          LANG: ja_JP.UTF-8
+          TZ: Asia/Tokyo
+    steps:
+      - checkout # ソースコードを作業ディレクトリにチェックアウトする特別なステップ:要git
+      - attach_workspace: # workspaceをアタッチする
+          at: .
+      - run:
+          name: serve
+          command: |
+            yarn lint
 
 workflows:
   version: 2
@@ -87,9 +77,9 @@ workflows:
     jobs:
       - build:
           context: gcp_001
- #     - serve:
- #         requires: # buildが成功したら実行する
- #           - serve
+      - lint:
+          requires: # buildが成功したら実行する
+          - build
 #
 #      - run: yarn install
 #      - run: yarn lint
@@ -117,6 +107,3 @@ workflows:
 # cd vue-select-sample
 # yarn build
 #ls -la vue-select-sample
-
-
-
