@@ -5,3 +5,4 @@ node_modules
 *.csv
 .firebase/
 yarn-error.log
+tokenmemo.txt

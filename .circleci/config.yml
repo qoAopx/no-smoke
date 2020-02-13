@@ -11,10 +11,8 @@ jobs:
       - checkout # ソースコードを作業ディレクトリにチェックアウトする特別なステップ:要git
       - run:
           name: environment
-          environment:
-            TOKEN: ${FIREBASE_TOKEN}
           command: |
-            echo ${LANG} ${TZ} ${FIREBASE_TOKEN} ${TOKEN}
+            echo ${LANG} ${TZ} ${FIREBASE_TOKEN}
             node -e "
               const env = {};
               env.CI = '${CI}';
@@ -49,6 +47,7 @@ jobs:
           command: |
             node -e "console.log(new Date().toLocaleString())"
             yarn install
+            yarn build
       - run:
           name: firebase
           command: |
@@ -71,15 +70,15 @@ jobs:
       - run:
           name: serve
           command: |
-            yarn lint
-
+            ls -la
+            yarn deploy --project "${PROJECT_ID}" --token "${FIREBASE_TOKEN}"
 workflows:
   version: 2
   build_and_test: # workflow名
     jobs:
       - build:
           context: gcp_001
-      - lint:
+      - deploy:
           requires: # buildが成功したら実行する
           - build
 #
