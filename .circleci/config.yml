@@ -1,0 +1,122 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/app
+    docker:
+      - image: circleci/node:10
+        environment:
+          LANG: ja_JP.UTF-8
+          TZ: Asia/Tokyo
+    steps:
+      - checkout # ソースコードを作業ディレクトリにチェックアウトする特別なステップ:要git
+      - run:
+          name: environment
+          command: |
+            echo ${LANG} ${TZ} ${FIREBASE_TOKEN}
+            node -e "
+              const env = {};
+              env.CI = '${CI}';
+              env.CIRCLE_BRANCH = '${CIRCLE_BRANCH}';
+              env.CIRCLE_BUILD_NUM = '${CIRCLE_BUILD_NUM}';
+              env.CIRCLE_BUILD_URL = '${CIRCLE_BUILD_URL}';
+              env.CIRCLE_COMPARE_URL = '${CIRCLE_COMPARE_URL}';
+              env.CIRCLE_INTERNAL_TASK_DATA = '${CIRCLE_INTERNAL_TASK_DATA}';
+              env.CIRCLE_JOB = '${CIRCLE_JOB}';
+              env.CIRCLE_NODE_INDEX = '${CIRCLE_NODE_INDEX}';
+              env.CIRCLE_NODE_TOTAL = '${CIRCLE_NODE_TOTAL}';
+              env.CIRCLE_PR_NUMBER = '${CIRCLE_PR_NUMBER}';
+              env.CIRCLE_PR_REPONAME = '${CIRCLE_PR_REPONAME}';
+              env.CIRCLE_PR_USERNAME = '${CIRCLE_PR_USERNAME}';
+              env.CIRCLE_PREVIOUS_BUILD_NUM = '${CIRCLE_PREVIOUS_BUILD_NUM}';
+              env.CIRCLE_PROJECT_REPONAME = '${CIRCLE_PROJECT_REPONAME}';
+              env.CIRCLE_PROJECT_USERNAME = '${CIRCLE_PROJECT_USERNAME}';
+              env.CIRCLE_PULL_REQUEST = '${CIRCLE_PULL_REQUEST}';
+              env.CIRCLE_PULL_REQUESTS = '${CIRCLE_PULL_REQUESTS}';
+              env.CIRCLE_REPOSITORY_URL = '${CIRCLE_REPOSITORY_URL}';
+              env.CIRCLE_SHA1 = '${CIRCLE_SHA1}';
+              env.CIRCLE_TAG = '${CIRCLE_TAG}';
+              env.CIRCLE_USERNAME = '${CIRCLE_USERNAME}';
+              env.CIRCLE_WORKFLOW_ID = '${CIRCLE_WORKFLOW_ID}';
+              env.CIRCLE_WORKING_DIRECTORY = '${CIRCLE_WORKING_DIRECTORY}';
+              env.CIRCLECI = '${CIRCLECI}';
+              env.HOME = '${HOME}';
+              console.table(env);
+            "
+      - run:
+          name: install & lint
+          command: |
+            node -e "console.log(new Date().toLocaleString())"
+            cd app
+            yarn install
+            ls -la
+      - run:
+          name: firebase
+          command: |
+            cd app
+            firebase --version
+      - run:
+          name: test
+          command: |
+            cd app
+            yarn lint
+      - persist_to_workspace:
+          root: . # workspaceのrootパス（絶対パスかworking_directoryからの相対パス）
+          paths:
+            - . # 共有するパス（絶対パスかrootからの相対パス）
+#  serve:
+#    working_directory: ~/app
+#    docker:
+#      - image: circleci/node:10
+#        environment:
+#          LANG: ja_JP.UTF-8
+#          TZ: Asia/Tokyo
+#    steps:
+#      - checkout # ソースコードを作業ディレクトリにチェックアウトする特別なステップ:要git
+#      - attach_workspace: # workspaceをアタッチする
+#          at: .
+#      - run:
+#          name: serve
+#          command: |
+#            cd app
+#            yarn install
+#            yarn firebase
+
+workflows:
+  version: 2
+  build_and_test: # workflow名
+    jobs:
+      - build:
+          context: gcp_001
+ #     - serve:
+ #         requires: # buildが成功したら実行する
+ #           - serve
+#
+#      - run: yarn install
+#      - run: yarn lint
+#      - run: echo "A first hello"
+#
+      # - run:
+      #     name: git clone & lint
+      #     command: |
+      #       ls -la
+      #       node --version
+      #       git clone https://github.com/qoAopx/vue-select-sample.git
+      #       cd vue-select-sample
+      #       yarn install
+      #       yarn lint
+
+      # - run:
+      #     name: build
+      #     command: |
+      #       cd vue-select-sample
+      #       yarn build
+      #       pwd
+      #       ls -la
+
+# ls -la vue-select-sample
+# cd vue-select-sample
+# yarn build
+#ls -la vue-select-sample
+
+
+
