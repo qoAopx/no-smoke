@@ -38,6 +38,5 @@ workflows:
     jobs:
       - build
       - deploy:
-          context: no-smoke
           requires: # buildが成功したら実行する
           - build
