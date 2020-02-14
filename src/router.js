@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import analytics from '@/firebase/analytics';
+
 import Search from './views/Search.vue';
 import Favorite from './views/Favorite.vue';
 import About from './views/About.vue';
@@ -32,8 +34,7 @@ const router = new Router({
 
 // eslint-disable-next-line no-unused-vars
 router.afterEach((to, from) => {
-  const gid = process.env.VUE_APP_GOOGLE_ANALYTICS;
-  gtag('config', gid, { 'page_path': to.path });
+  analytics.screenView(to.path);
   window.scrollTo(0, 0);
 });
 

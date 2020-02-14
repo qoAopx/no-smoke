@@ -52,9 +52,6 @@ export default {
     isMapLoaded: () => {
       return 'Y' in window;
     }
-  },
-  mounted: function() {},
-  methods: {
   }
 };
 </script>

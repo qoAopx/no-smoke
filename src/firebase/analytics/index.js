@@ -1,0 +1,22 @@
+import firebase from '@firebase/app';
+import '@firebase/analytics';
+
+const analytics = firebase.analytics();
+
+const screenView = (path) => {
+  const app_name = process.env.VUE_APP_NAME;
+  const event_name = firebase.analytics.EventName.SCREEN_VIEW;
+  const event_value = {
+    app_name: app_name,
+    screen_name: path
+  };
+  // Google Analytics for Firebase
+  console.log(event_name, event_value);
+  analytics.setCurrentScreen(path, { global: true });
+  analytics.logEvent(event_name, event_value);
+  return true;
+};
+
+export default {
+  screenView: screenView,
+};

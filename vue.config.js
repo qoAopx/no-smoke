@@ -21,7 +21,7 @@ module.exports = {
 
   pages: {
     index: { // メニュー画面
-      entry: 'src/main.js', // エントリーポイントとなるjs
+      entry: 'src/init.js', // エントリーポイントとなるjs
       template: 'src/template/index.html', // テンプレートのHTML
       filename: 'index.html', // build時に出力されるファイル名
     },
