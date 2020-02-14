@@ -78,5 +78,6 @@ workflows:
       - build:
           context: no-smoke
       - deploy:
+          context: no-smoke
           requires: # buildが成功したら実行する
           - build
