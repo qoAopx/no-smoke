@@ -38,6 +38,6 @@ workflows:
     jobs:
       - build
       - deploy:
-          context: ${PROJECT_ID}
+          context: no-smoke
           requires: # buildが成功したら実行する
           - build
