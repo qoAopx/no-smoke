@@ -15,9 +15,9 @@ jobs:
             yarn install
             yarn build
       - persist_to_workspace:
-          root: . # workspaceのrootパス（絶対パスかworking_directoryからの相対パス）
+          root: . # workspaceのrootパスを永続化する、要は共有
           paths:
-            - . # 共有するパス（絶対パスかrootからの相対パス）
+            - . # rootからの相対パス
   deploy:
     working_directory: ~/app
     docker:
@@ -26,7 +26,7 @@ jobs:
           LANG: ja_JP.UTF-8
           TZ: Asia/Tokyo
     steps:
-      - attach_workspace: # workspaceをアタッチする
+      - attach_workspace: # persist_to_workspaceで設定したディレクトリを利用する
           at: .
       - run:
           name: deploy firebase hosting
@@ -38,5 +38,8 @@ workflows:
     jobs:
       - build
       - deploy:
-          requires: # buildが成功したら実行する
+          requires: # buildが成功したら実行
           - build
+      filters:
+        branches:
+        only: master # master branchのみ実行
