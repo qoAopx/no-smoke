@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import analytics from '@/firebase/analytics';
+
 export default {
   name: 'MapView',
   // eslint-disable-next-line vue/require-prop-types
@@ -107,7 +109,7 @@ export default {
     },
     setGtags: function() {
       const ymap = this.ymap;
-      gtag('event', 'search', { search_term: ymap.getCenter().toString() });
+      analytics.search(ymap.getCenter().toString());
     }
   }
 };
