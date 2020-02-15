@@ -39,7 +39,7 @@ workflows:
       - build
       - deploy:
           requires: # buildが成功したら実行
-          - build
-      filters:
-        branches:
-        only: master # master branchのみ実行
+            - build
+          filters:
+            branches:
+              only: master # master branchのみdeploy
