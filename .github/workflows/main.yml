@@ -34,5 +34,7 @@ jobs:
     - run: node --version
     - run: yarn install
     - run: yarn build
+    - run: yarn global add firebase-tools
+    - run: firebase --version
 
 
