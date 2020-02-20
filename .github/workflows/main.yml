@@ -13,23 +13,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
-    - name: SET Env
-      env:
-        PROJECT_ID: ${{ secrets.PROJECT_ID }}
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        LANG: ja_JP.UTF-8
-        TZ: Asia/Tokyo
-      run: |
-        echo "${PROJECT_ID}" , "${FIREBASE_TOKEN}"
-        echo "${LANG}" , "${TZ}"
-
-    - name: install & build
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
       with:
         node-version: "10"
+      env:
+        LANG: ja_JP.UTF-8
+        TZ: Asia/Tokyo
+    - run: |
+        echo "${LANG}" , "${TZ}"
     - run: node --version
     - run: yarn install
     - run: yarn build
+
+    - run: |
+        echo "${PROJECT_ID}" , "${FIREBASE_TOKEN}"
+      env:
+        PROJECT_ID: ${{ secrets.PROJECT_ID }}
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
