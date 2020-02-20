@@ -13,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: install & build
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
       with:
@@ -26,7 +25,6 @@ jobs:
         yarn install
         yarn build
 
-    - name: deploy
     - run: |
         yarn global add firebase-tools
         `yarn global bin`/firebase deploy --only hosting --project "${PROJECT_ID}" --token "${FIREBASE_TOKEN}"
