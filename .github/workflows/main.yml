@@ -1,0 +1,23 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: use secret value
+      env:
+        PROJECT_ID: ${{ secrets.PROJECT_ID }}
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+    - name: Run a one-line script
+      run: echo Hello, world!
+    - name: Run secret value
+      run: echo ${{ PROJECT_ID }} , ${{ FIREBASE_TOKEN }}
+    - name: Run a multi-line script
+      run: |
+        echo Add other actions to build,
+        echo test, and deploy your project.
