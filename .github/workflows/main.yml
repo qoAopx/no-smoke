@@ -12,12 +12,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: ['10']
-
     steps:
     - uses: actions/checkout@v2
+
     - name: SET Env
       env:
         PROJECT_ID: ${{ secrets.PROJECT_ID }}
@@ -27,6 +24,7 @@ jobs:
       run: |
         echo "${PROJECT_ID}" , "${FIREBASE_TOKEN}"
         echo "${LANG}" , "${TZ}"
+
     - name: install & build
       uses: actions/setup-node@v1
       with:
@@ -34,7 +32,8 @@ jobs:
     - run: node --version
     - run: yarn install
     - run: yarn build
-    - run: yarn global add firebase-tools
-    - run: firebase --version
 
-
+    - name: firebase-tools
+    - run: |
+        yarn global add firebase-tools
+        `yarn global bin`/firebase --version
