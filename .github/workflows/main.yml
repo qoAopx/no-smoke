@@ -7,17 +7,16 @@ on:
 
 jobs:
   build:
-
+    name: BUILD
     runs-on: ubuntu-latest
-
     steps:
-      - name: use secret value
-        env:
-          PROJECT_ID: ${{ secrets.PROJECT_ID }}
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-      - name: Run secret value
-        run: echo ${{ PROJECT_ID }} , ${{ FIREBASE_TOKEN }}
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+    - name: Secret Env
+      env:
+        PROJECT_ID: ${{ secrets.PROJECT_ID }}
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+    - name: use secret value
+      run: echo ${{ PROJECT_ID }} , ${{ FIREBASE_TOKEN }}
+    - name: Run a multi-line script
+      run: |
+        echo Add other actions to build,
+        echo test, and deploy your project.
