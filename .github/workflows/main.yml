@@ -7,18 +7,27 @@ on:
 
 jobs:
   build:
+
     name: BUILD
+
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x]
+
     steps:
-    - name: Secret Env
+    - name: SET Env
       env:
         PROJECT_ID: ${{ secrets.PROJECT_ID }}
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-      run: echo "${PROJECT_ID}" , "${FIREBASE_TOKEN}"
-    - name: Run a multi-line script
+        LANG: ja_JP.UTF-8
+        TZ: Asia/Tokyo
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
-        pwd
-        ls
-        date
+        echo "${PROJECT_ID}" , "${FIREBASE_TOKEN}"
+        echo "${LANG}" , "${TZ}"
+    - name: install & build
+      run: |
+        yarn install
+        yarn build
+        
