@@ -22,14 +22,15 @@ jobs:
         TZ: Asia/Tokyo
     - run: |
         echo "${LANG}" , "${TZ}"
-    - run: node --version
-    - run: yarn install
-    - run: yarn build
+        node --version
+        yarn install
+        yarn build
 
     - run: |
         echo "${PROJECT_ID}" , "${FIREBASE_TOKEN}"
         yarn global add firebase-tools
         `yarn global bin`/firebase --version
+        `yarn global bin`/firebase deploy --only hosting --project "${PROJECT_ID}" --token "${FIREBASE_TOKEN}"
       env:
         PROJECT_ID: ${{ secrets.PROJECT_ID }}
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
