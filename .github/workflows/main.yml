@@ -12,10 +12,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: ['10']
-
     steps:
     - uses: actions/checkout@v2
     - name: SET Env
@@ -28,9 +24,8 @@ jobs:
         echo "${PROJECT_ID}" , "${FIREBASE_TOKEN}"
         echo "${LANG}" , "${TZ}"
     - name: install & build
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node }}
     - run: yarn install
     - run: yarn build
+      with:
+        node-version: "10"
 
