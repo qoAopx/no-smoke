@@ -17,6 +17,7 @@ jobs:
         node-version: [10.x]
 
     steps:
+    - uses: actions/checkout@v2
     - name: SET Env
       env:
         PROJECT_ID: ${{ secrets.PROJECT_ID }}
@@ -30,4 +31,4 @@ jobs:
       run: |
         yarn install
         yarn build
-        
+
