@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+
     - name: SET Env
       env:
         PROJECT_ID: ${{ secrets.PROJECT_ID }}
@@ -23,8 +23,10 @@ jobs:
       run: |
         echo "${PROJECT_ID}" , "${FIREBASE_TOKEN}"
         echo "${LANG}" , "${TZ}"
+
     - name: install & build
-      uses: actions/setup-node@v1
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
       with:
         node-version: "10"
     - run: node --version
