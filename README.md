@@ -12,6 +12,8 @@
 
 こんな短時間でサービス作れちゃうご時世なんですね、ほんとに驚きです。
 
+ちなみに２０２０年４月からは禁煙店が一気に増えることになっていますが、ヤフーのＡＰＩは対応してくれるのでしょうか？？
+
 ## 利用したサービスやフレームワーク
 
 簡単にリストアップします。どれも有名ですので個別には紹介しませんが。
@@ -19,10 +21,11 @@
 1. [Vue.js](https://jp.vuejs.org/) : 言わずとしれたＵＩフレームワークです。シンプルで好きです。
 2. [Firebase](https://firebase.google.com/?hl=ja) : 今のところHostingのみ利用させていただいてます。
 3. [Bootstrap](https://getbootstrap.com/) : 非デザイナでもそれっぽいサイトができていいですね。
-4. [Yahoo YOLP](https://developer.yahoo.co.jp/webapi/map) : 地図と施設検索に利用させていただいてます。Yahoo!ローカルサーチAPIの検索パラメータに禁煙度がついていたのがこのサービスを自作しようとおもったきっかけにもなってます。
-5. [Font Awesome](https://fontawesome.com/) : アイコンで利用させていただいてます。
-6. [Flaticon](https://www.flaticon.com/) : アイコン画像で利用させていただいてます。
-7. [Google Chart API](https://developers.google.com/chart/image/docs/gallery/dynamic_icons) : 地図のピンで利用させていただいてます。
+4. [Google Maps Platform](https://cloud.google.com/maps-platform?hl=ja) : 地図に利用させていただいてます。
+5. [Yahoo YOLP](https://developer.yahoo.co.jp/webapi/map) : 施設検索に利用させていただいてます。Yahoo!ローカルサーチAPIの検索パラメータに禁煙度がついていたのがこのサービスを自作しようとおもったきっかけにもなってます。Yahooの地図が終了するとのことでGoogle Mapsに切り替えました。
+6. [Font Awesome](https://fontawesome.com/) : アイコンで利用させていただいてます。
+7. [Flaticon](https://www.flaticon.com/) : アイコン画像で利用させていただいてます。
+8. [Google Chart API](https://developers.google.com/chart/image/docs/gallery/dynamic_icons) : 地図のピンで利用させていただいてます。
 
 ## 禁煙店が探せるサービス「No Smoke !」
 

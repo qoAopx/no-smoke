@@ -26,7 +26,15 @@
         </b-list-group-item>
         <b-list-group-item>
           <b-link
-            href="https://firebase.google.com/"
+            href="https://cloud.google.com/maps-platform?hl=ja"
+            rel="noopener nofollow"
+            target="_blank">
+            Google Maps Platform
+          </b-link>
+        </b-list-group-item>
+        <b-list-group-item>
+          <b-link
+            href="https://firebase.google.com/?hl=ja"
             rel="noopener nofollow"
             target="_blank">
             Firebase

@@ -21,6 +21,7 @@
     "@firebase/remote-config": "^0.1.17",
     "bootstrap-vue": "^2.9.0",
     "eslint": "^6.8.0",
+    "google-maps-api-loader": "^1.1.1",
     "vue": "^2.6.11",
     "vue-burger-menu": "^2.0.5",
     "vue-router": "^3.1.6",

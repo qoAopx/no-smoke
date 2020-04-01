@@ -26,7 +26,7 @@
       <b-button
         variant="outline-primary"
         class="m-4"
-        @click="currentPosition">
+        @click.prevent="currentPosition">
         <b-spinner
           v-if="isGPS"
           small
@@ -104,7 +104,7 @@ export default {
       this.isGPS = true;
       navigator.geolocation.getCurrentPosition(
         (pos)=>{
-          //console.log(pos.coords);
+          console.log(pos);
           this.isGPS = false;
           this.center = pos;
         },
@@ -128,10 +128,11 @@ export default {
         return false;
       }
       const appid = process.env.VUE_APP_YAHOO_APPID;
-      const lat = this.center.Lat;
-      const lon = this.center.Lon;
-      const bbox = [this.bounds.ne.Lat, this.bounds.ne.Lon, this.bounds.sw.Lat, this.bounds.sw.Lon];
-      // console.log(bbox);
+      const lat = this.center.lat();
+      const lon = this.center.lng();
+      const ne = this.bounds.getNorthEast();
+      const sw = this.bounds.getSouthWest();
+      const bbox = [ne.lat(), ne.lng(), sw.lat(), sw.lng()];
       const smoke = Array.isArray(this.smoke) ? this.smoke.join(',') : '1';
       const gc = Array.isArray(this.genres) ? this.genres.join(',') : '';
       const url = 'https://map.yahooapis.jp/search/local/V1/localSearch';
