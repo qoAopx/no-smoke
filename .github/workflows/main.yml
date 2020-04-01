@@ -23,6 +23,8 @@ jobs:
     - run: |
         node --version
         yarn install
+        echo "VUE_APP_GOOGLEMAP_APIKEY=${{ secrets.VUE_APP_GOOGLEMAP_APIKEY }}" >> .env
+        cat .env
         yarn build
 
     - run: |
