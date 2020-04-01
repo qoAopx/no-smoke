@@ -1,7 +1,6 @@
 dist
 node_modules
-.env.development
-.env.production
+.env.local
 *.csv
 .firebase/
 yarn-error.log
