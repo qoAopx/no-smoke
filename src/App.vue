@@ -10,14 +10,12 @@
         Beta
       </span>
     </h4>
-    <div
-      v-if="isMapLoaded">
+    <div>
       <SidebarMenu />
       <div id="page-wrap">
         <router-view />
       </div>
     </div>
-    <OutOfService v-if="!isMapLoaded" />
     <div class="copyright mt-4 mb-4">
       &copy; 2019 <b-link
         href="https://twitter.com/qoAop"
@@ -40,18 +38,11 @@
 <script>
 // @ is an alias to /src
 import SidebarMenu from '@/components/SidebarMenu.vue';
-import OutOfService from '@/components/OutOfService.vue';
 
 export default {
   name: 'App',
   components: {
     SidebarMenu: SidebarMenu,
-    OutOfService: OutOfService
-  },
-  computed: {
-    isMapLoaded: () => {
-      return 'Y' in window;
-    }
   }
 };
 </script>

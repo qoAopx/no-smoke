@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import GoogleMapsApiLoader from 'google-maps-api-loader';
 import analytics from '@/firebase/analytics';
 
 export default {
@@ -13,7 +14,8 @@ export default {
   props: ['feature', 'center'],
   data() {
     return {
-      ymap: null,
+      google: null,
+      map: null,
       markers: []
     };
   },
@@ -23,9 +25,6 @@ export default {
     },
     resultCenter: function() {
       return this.center;
-    },
-    isMapLoaded: () => {
-      return 'Y' in window;
     }
   },
   watch: {
@@ -41,63 +40,73 @@ export default {
   },
   methods: {
     initMap: function() {
-      const _vm = this;
-      this.ymap = new Y.Map('map', {
-        configure: {
-          mapType: Y.Map.TYPE.SMARTPHONE,
-          doubleClickZoom: true,
-          scrollWheelZoom: true
-        }
+      GoogleMapsApiLoader({
+        apiKey: process.env.VUE_APP_GOOGLEMAP_APIKEY
+      }).then((google) => {
+        this.google = google;
+        const opts = {
+          center: new this.google.maps.LatLng(35.66572, 139.731),
+          zoom: 16
+        };
+        const mapContainer = this.$el.querySelector('#map');
+        this.map = new this.google.maps.Map(mapContainer, opts);
+        this.map.addListenerOnce('tilesloaded', this.initializeMap());
       });
-      const ymap = this.ymap;
-      ymap.addControl(new Y.ZoomControl());
+      return true;
+    },
+    initializeMap: function() {
+      const _vm = this;
       const mapHandle = () => {
         const obj = {
-          center: ymap.getCenter(),
-          bounds: ymap.getBounds()
+          center: this.map.getCenter(),
+          bounds: this.map.getBounds()
         };
         _vm.$emit('moveEnd', obj);
       };
-      ymap.bind('moveend', mapHandle);
-      ymap.bind('zoomend', mapHandle);
-      ymap.bind('loaded', mapHandle);
-      //ymap.bind('load', mapHandle);
-      window.addEventListener('resize', function() {
-        ymap.updateSize();
-      });
-      ymap.drawMap(new Y.LatLng(35.66572, 139.731), 18, Y.LayerSetId.NORMAL);
-      return true;
+      this.map.addListener('dragend', mapHandle);
+      this.map.addListener('tilesloaded', mapHandle);
+      //this.map.addListener('center_changed', mapHandle);
+      //this.map.addListener('bounds_changed', mapHandle);
     },
     moveCenter: function() {
       if (!this.resultCenter.coords) return false;
       //console.log('moveCenter3', this.resultCenter.coords);
       const lat = this.resultCenter.coords.latitude;
       const lon = this.resultCenter.coords.longitude;
-      const ymap = this.ymap;
-      ymap.panTo(new Y.LatLng(lat, lon), true);
+      this.map.panTo(new this.google.maps.LatLng(lat, lon));
     },
     refreshFeature: function() {
+      if (!this.map) return false;
       this.clearFeature();
       this.putFeature();
       this.setGtags();
     },
     clearFeature: function() {
-      const ymap = this.ymap;
       for (let marker of this.markers) {
-        ymap.removeFeature(marker);
+        marker.setMap(null);
       }
     },
     putFeature: function() {
-      //console.log('putFeature', this.resultFeature);
-      const ymap = this.ymap;
       let index = 0;
       for (let f of this.resultFeature) {
         ++index;
         const p = f.Geometry.Coordinates.split(',');
-        let icon = new Y.Icon(this.mapIconImageUrl(index, f), {iconSize: new Y.Size(21, 34)});
-        let marker = new Y.Marker(new Y.LatLng(p[1], p[0]), {icon: icon, title: '[' + f.Category.join(',') + '] ' + f.Name});
-        //marker.bindInfoWindow(JSON.stringify(f));
-        ymap.addFeature(marker);
+        const latlng = new this.google.maps.LatLng(p[1], p[0]);
+        const marker = new this.google.maps.Marker({
+          position: latlng,
+          title: '[' + f.Category.join(',') + '] ' + f.Name,
+          icon: {
+            url: this.mapIconImageUrl(index, f), //アイコンのURL
+            scaledSize: new this.google.maps.Size(21, 34) //サイズ
+          }
+        });
+        const infowindow = new this.google.maps.InfoWindow({
+          content: '[' + f.Category.join(',') + '] ' + f.Name
+        });
+        marker.addListener('click', ()=>{
+          infowindow.open(this.map, marker);
+        });
+        marker.setMap(this.map);
         this.markers.push(marker);
       }
     },
@@ -108,8 +117,7 @@ export default {
       return `https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=${char}|${fillColor}|${strColor}`;
     },
     setGtags: function() {
-      const ymap = this.ymap;
-      analytics.search(ymap.getCenter().toString());
+      analytics.search(this.map.getCenter().toString());
     }
   }
 };

@@ -17,7 +17,7 @@
       <b-button
         variant="outline-primary"
         class="m-4"
-        @click="currentPosition">
+        @click.prevent="currentPosition">
         <b-spinner
           v-if="isGPS"
           small
