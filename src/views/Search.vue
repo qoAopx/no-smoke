@@ -41,7 +41,7 @@
       ref="map"
       :feature="feature"
       :center="center"
-      @moveEnd="moveEnd" />      
+      @move-end="moveEnd" />      
     <div>
       <b-alert
         class="mt-2"

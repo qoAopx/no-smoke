@@ -61,7 +61,7 @@ export default {
           center: this.map.getCenter(),
           bounds: this.map.getBounds()
         };
-        _vm.$emit('moveEnd', obj);
+        _vm.$emit('move-end', obj);
       };
       this.map.addListener('dragend', mapHandle);
       this.map.addListener('tilesloaded', mapHandle);

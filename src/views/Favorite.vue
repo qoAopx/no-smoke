@@ -35,7 +35,7 @@
     <div>
       <FavoriteFeatureList
         :feature="feature"
-        @moveCenter="moveCenter" />
+        @move-center="moveCenter" />
     </div>
   </div>
 </template>

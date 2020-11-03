@@ -124,7 +124,7 @@ export default {
       this.featureList.splice(index, 1);
     },
     moveCenter: function(feature, index) {
-      this.$emit('moveCenter', feature);
+      this.$emit('move-center', feature);
       // マップを表示した施設を一番先頭にする。
       const f = this.featureList.splice(index, 1);
       this.featureList.unshift(f[0]);
