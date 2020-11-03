@@ -26,11 +26,10 @@ jobs:
         echo "VUE_APP_GOOGLEMAP_APIKEY=${{ secrets.VUE_APP_GOOGLEMAP_APIKEY }}" >> .env
         cat .env
         yarn build
-
     - run: |
         yarn global add firebase-tools
-       `yarn global bin`/firebase --version
-       `yarn global bin`/firebase use "no-smoke"
+        `yarn global bin`/firebase --version
+        `yarn global bin`/firebase use "${PROJECT_ID}"
         # `yarn global bin`/firebase deploy --only hosting --project "${PROJECT_ID}" --token "${FIREBASE_TOKEN}"
         `yarn global bin`/firebase deploy --only hosting --project "${PROJECT_ID}" --token "${FIREBASE_TOKEN}"
       env:
