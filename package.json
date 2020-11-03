@@ -43,7 +43,7 @@
     "lint-staged": "^10.1.1",
     "prettier": "^2.0.2",
     "regenerator-runtime": "^0.13.5",
-    "vue-cli-plugin-bootstrap-vue": "^0.6.0",
+    "vue-cli-plugin-bootstrap-vue": "^0.7.0",
     "vue-jsonp": "^0.1.8",
     "vue-template-compiler": "^2.6.11"
   },
