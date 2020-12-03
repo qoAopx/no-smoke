@@ -1,5 +1,6 @@
 <template>
   <BurgerMenu
+    :close-on-navigation="true"
     width="300"
     v-bind="this.$attrs"
     @openMenu="push"
@@ -114,11 +115,9 @@ export default {
   },
   methods: {
     openMenu() {
-      this.$emit('openMenu');
       this.$refs.burgermenu.scrollIntoView();
     },
     closeMenu() {
-      this.$emit('closeMenu');
       this.$store.commit('genres', this.selected);
       this.$store.commit('smoke', this.smoke);
     },

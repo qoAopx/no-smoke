@@ -101,7 +101,7 @@ export default {
         if (this.favorite) f.favorite = this.favorite[f.Gid] !== undefined;
         this.featureList.push(f);
       }
-      this.$emit('changeFavorite');
+      this.$emit('change-favorite');
     },
   },
   created: function() {
@@ -129,7 +129,7 @@ export default {
       } else {
         this.$store.commit('removeFavorite', feature);
       }
-      this.$emit('changeFavorite');
+      this.$emit('change-favorite');
     }
   }
 };

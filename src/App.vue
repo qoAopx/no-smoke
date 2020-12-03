@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="copyright mt-4 mb-4">
-      &copy; 2019 <b-link
+      &copy; 2020 <b-link
         href="https://twitter.com/qoAop"
         target="_blank"
         rel="noopener nofollow">

@@ -52,14 +52,14 @@
       </b-alert>
       <FeatureList
         :feature="feature"
-        @changeFavorite="changeFavorite" />
+        @change-favorite="changeFavorite" />
     </div>
   </div>
 </template>
 
 <script>
 import Vue from 'vue';
-import VueJsonp from 'vue-jsonp';
+import { VueJsonp } from 'vue-jsonp';
 Vue.use(VueJsonp);
 // @ is an alias to /src
 import MapView from '@/components/MapView.vue';
