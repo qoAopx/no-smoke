@@ -1,6 +1,6 @@
 // https://cli.vuejs.org/config/#global-cli-config
 module.exports = {
-  lintOnSave: true,
+  lintOnSave: false,
   publicPath: '',
   outputDir: 'dist',
   assetsDir: '',
@@ -26,5 +26,4 @@ module.exports = {
       filename: 'index.html', // build時に出力されるファイル名
     },
   }
-
 };
