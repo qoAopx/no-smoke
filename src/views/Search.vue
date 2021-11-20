@@ -104,7 +104,7 @@ export default {
       this.isGPS = true;
       navigator.geolocation.getCurrentPosition(
         (pos)=>{
-          console.log(pos);
+          //console.log(pos);
           this.isGPS = false;
           this.center = pos;
         },
