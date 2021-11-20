@@ -11,7 +11,7 @@ const screenView = (path) => {
     screen_name: path
   };
   // Google Analytics for Firebase
-  console.log(event_name, event_value);
+  // console.log(event_name, event_value);
   analytics.setCurrentScreen(path, { global: true });
   analytics.logEvent(event_name, event_value);
   return true;
