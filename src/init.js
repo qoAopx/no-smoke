@@ -1,4 +1,4 @@
-import firebase from '@firebase/app';
+import firebase from 'firebase/app';
 
 const url = '/__/firebase/init.json';
 fetch(url)
@@ -7,6 +7,7 @@ fetch(url)
     return response.json();
   })
   .then(json=>{
+    //console.log(json);
     firebase.initializeApp(json);
     require('./main.js');
   });

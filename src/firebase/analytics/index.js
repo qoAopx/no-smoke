@@ -25,7 +25,7 @@ const search = (search_term) => {
     search_term: search_term
   };
   // Google Analytics for Firebase
-  console.log(event_name, event_value);
+  //console.log(event_name, event_value);
   analytics.logEvent(event_name, event_value);
   return true;
 };

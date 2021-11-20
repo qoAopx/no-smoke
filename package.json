@@ -15,12 +15,9 @@
     "firebase:version": "firebase --version"
   },
   "dependencies": {
-    "@firebase/analytics": "^0.7.4",
-    "@firebase/app": "^0.7.9",
-    "@firebase/performance": "^0.5.4",
-    "@firebase/remote-config": "^0.3.3",
     "bootstrap-vue": "^2.21.2",
     "eslint": "^8.2.0",
+    "firebase": "8.10",
     "google-maps-api-loader": "^1.1.1",
     "vue": "^2.6.14",
     "vue-burger-menu": "^2.0.5",
