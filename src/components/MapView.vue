@@ -6,7 +6,7 @@
 
 <script>
 import GoogleMapsApiLoader from 'google-maps-api-loader';
-import analytics from '@/firebase/analytics';
+import analytics from '@/firebase/analytics'; // src以下に設置してある自作部分のfirebase用ライブラリ
 
 export default {
   name: 'MapView',
